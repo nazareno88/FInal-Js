@@ -1,14 +1,14 @@
-let listaZapatillas = [
-{id:8 , nombre:"Adidas Campus", marca: "Adidas", rutaImagen:"adidas-campus.jpg", precio:172000, stock:6 },
-{id:12, nombre:"Jordan 3 Lucky Green" ,marca:"Nike" ,rutaImagen:"Jordan-3.png" ,precio:360000 ,stock:8},
-{id:22, nombre:"Jordan 6 Tinker (2018)",marca:"Nike", rutaImagen:"jordan-6-2.jpg", precio:450000, stock:3},
-{id:87, nombre:"Vans Knu Skool" ,marca:"Vans",rutaImagen:"vans.jpg", precio:190000, stock:12 },
-{id:9, nombre:"Suade XL", marca:"Puma", rutaImagen:"suadexl.jpg", precio:160000, stock:9 },
-{id:11, nombre:"Yezzy 350" ,marca:"Adidas", rutaImagen:"yezzy.jpg", precio:300000, stock:6 },
-{id:24, nombre:"Dunk SB",marca:"Nike", rutaImagen:"nike-dunk.webp", precio:190000, stock:3 },  
-];
+// let listaZapatillas = [
+// {id:8 , nombre:"Adidas Campus", marca: "Adidas", rutaImagen:"adidas-campus.jpg", precio:172000, stock:6 },
+// {id:12, nombre:"Jordan 3 Lucky Green" ,marca:"Nike" ,rutaImagen:"Jordan-3.png" ,precio:360000 ,stock:8},
+// {id:22, nombre:"Jordan 6 Tinker (2018)",marca:"Nike", rutaImagen:"jordan-6-2.jpg", precio:450000, stock:3},
+// {id:87, nombre:"Vans Knu Skool" ,marca:"Vans",rutaImagen:"vans.jpg", precio:190000, stock:12 },
+// {id:9, nombre:"Suade XL", marca:"Puma", rutaImagen:"suadexl.jpg", precio:160000, stock:9 },
+// {id:11, nombre:"Yezzy 350" ,marca:"Adidas", rutaImagen:"yezzy.jpg", precio:300000, stock:6 },
+// {id:24, nombre:"Dunk SB",marca:"Nike", rutaImagen:"nike-dunk.webp", precio:190000, stock:3 },  
+// ];
 
-principal(listaZapatillas);
+// principal(listaZapatillas);
 
 /*Funcion Principal*/
 function principal(zapatillas){
@@ -20,6 +20,14 @@ function principal(zapatillas){
     
     let botonComprar = document.getElementById("boton-comprar");
     botonComprar.addEventListener("click",finalizarCompra);
+    botonComprar.addEventListener("click", ()=>{
+        Swal.fire({
+            title: "Compra Realizada!",
+            text: "Su compra fue realizada con exito!",
+            icon: "success"
+          });
+    });
+    // botonComprar.addEventListener("click", compraExitosa);
     
     let botonVaciarCarrito = document.getElementById("boton-vc");
     botonVaciarCarrito.addEventListener("click",vaciarCarrito);
@@ -45,10 +53,7 @@ function mostrarCarrito(e){
 function obtenerCarritoLS(){
     let carrito = [];
     let carritoLS = JSON.parse(localStorage.getItem("carrito"));
-    if(carritoLS){
-       carrito = carritoLS
-    };
-    return carrito
+    return carritoLS ? carritoLS : carrito ;
 };
 
 function finalizarCompra(){
@@ -92,7 +97,17 @@ function crearContainerZapatillas(zapatillas){
         
         let botonCarrito = document.getElementById(zapatilla.id);
         botonCarrito.addEventListener("click", (e)=>agregarAlCarrito(e,zapatillas));
-
+        botonCarrito.addEventListener("click", ()=>(Toastify({
+            text: "Producto Agregrado al carrito",
+            duration: 2500,
+            gravity: "top",
+            position: 'left',
+            style: {
+                background: "linear-gradient(to right, #eea287, #ff7f50)",
+                border: "2px solid black",
+                color: "black"
+              }
+          }).showToast()));
     });
 };
 
@@ -194,3 +209,13 @@ localStorage.setItem("carrito",JSON.stringify(carrito));
 generarCarrito(carrito);
 
 };
+
+function llamarLista(){
+    fetch("./productos.json")
+       .then(response => response.json())
+       .then(lista =>{
+        return principal(lista)
+       });
+};
+
+llamarLista();

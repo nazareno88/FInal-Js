@@ -1,0 +1,9 @@
+[
+    {"id":8 , "nombre":"Adidas Campus", "marca": "Adidas", "rutaImagen":"adidas-campus.jpg", "precio":172000, "stock":6 },
+    {"id":12, "nombre":"Jordan 3 Lucky Green" ,"marca":"Nike" ,"rutaImagen":"Jordan-3.png" ,"precio":360000 ,"stock":8},
+    {"id":22, "nombre":"Jordan 6 Tinker (2018)","marca":"Nike", "rutaImagen":"jordan-6-2.jpg", "precio":450000, "stock":3},
+    {"id":87, "nombre":"Vans Knu Skool" ,"marca":"Vans","rutaImagen":"vans.jpg", "precio":190000, "stock":12 },
+    {"id":9, "nombre":"Suade XL", "marca":"Puma", "rutaImagen":"suadexl.jpg", "precio":160000, "stock":9 },
+    {"id":11, "nombre":"Yezzy 350" ,"marca":"Adidas", "rutaImagen":"yezzy.jpg", "precio":300000, "stock":6 },
+    {"id":24, "nombre":"Dunk SB","marca":"Nike", "rutaImagen":"nike-dunk.webp", "precio":190000, "stock":3 }
+    ]
